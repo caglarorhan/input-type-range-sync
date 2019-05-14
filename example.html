@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Type Range Sync</title>
+    <script src="./input-type-range-sync.js"></script>
+</head>
+<body>
+<div> <label for="input_1">Input 1</label> <input type="range" value="0" id="input_1"> </div>
+<div> <label for="input_2">Input 2</label> <input type="range" value="0" id="input_2"> </div>
+<div> <label for="input_3">Input 3</label> <input type="range" value="0" id="input_3"> </div>
+<hr>
+
+<h4>How to get current values of each input elements synchronously</h4>
+<pre>
+    document.querySelector('input_1').dataset.currentValue;
+</pre>
+<pre>
+    document.querySelector('input_2').dataset.currentValue;
+</pre>
+<pre>
+    document.querySelector('input_3').dataset.currentValue;
+</pre>
+</body>
+</html>

@@ -1,37 +1,40 @@
+
 window.addEventListener('load',function(){totalLoad();});
 
 function totalLoad(){
+    const controlsRange = document.querySelectorAll('input[type="range"]');
+// default ranges are 0 to 100.
+// you can change them with max="11111" min="1" and give a step with step="0.1"
+    controlsRange.forEach(input => {
+        input.addEventListener('mousedown',sync,true);
+        input.addEventListener('click',detector,true);
+        input.addEventListener('mouseup',unsync,true);
+        input.setAttribute('data-current-value',0);
+    });
 
-    const controlsRange = document.querySelectorAll('.controls input[type="range"]');
-    const controlsColor = document.querySelectorAll('.controls input[type="color"]');
-    controlsRange.forEach(input => input.addEventListener('mousedown',sync,true));
-    controlsRange.forEach(input => input.addEventListener('click',detector,true));
-    controlsRange.forEach(input => input.addEventListener('mouseup',unsync,true));
-    controlsColor.forEach(input => input.addEventListener('change',detector,true));
+    function sync(event){
+        let targetInput = event.target;
+        console.log(`Syncing... Last value is ${targetInput.value}`);
+        targetInput.addEventListener('mousemove',detector,true) ;
+    }
+
+
+    function detector(event){
+        let targetInput = event.target;
+        console.log('sysnc done:'+ targetInput.value);
+        targetInput.dataset.currentValue = targetInput.value;
+    }
+
+
+    function unsync(event){
+        let targetInput = event.target;
+        console.log(`Unsyncing... Last value is ${targetInput.value}`);
+        targetInput.removeEventListener('mousemove',detector,true);
+
+    }
+
 
 }
 
 
-function sync(event){
-    let input = event.target;
-    console.log(`Syncing... Last value is ${input.value}`);
-    input.addEventListener('mousemove',detector,true) ;
-}
 
-
-function detector(event){
-    let input = event.target;
-    console.log('sysnc done:'+ input.value);
-    let sizing = input.dataset.sizing || '';
-    document.documentElement.style.setProperty(`--${this.name}`,`${input.value}${sizing}`);
-
-}
-
-
-
-function unsync(event){
-    let input = event.target;
-    console.log(`Unsyncing... Last value is ${input.value}`);
-    input.removeEventListener('mousemove',detector,true);
-
-}
