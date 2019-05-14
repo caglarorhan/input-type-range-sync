@@ -44,9 +44,6 @@ function totalLoad(){
 
 
 
-
-
-
 //for example -sample function-- you should use your own functions
 function whatsTheValue(currentVal){
     console.log(`
@@ -54,4 +51,8 @@ function whatsTheValue(currentVal){
         Current value is: ${currentVal}
         `)
 }
+
+
+
+
 
