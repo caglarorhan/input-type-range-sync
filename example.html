@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <title>Input Type Range Sync</title>
     <script src="./input-type-range-sync.js"></script>
+
 </head>
 <body>
-<div> <label for="input_1">Input 1</label> <input type="range" value="0" id="input_1"> </div>
-<div> <label for="input_2">Input 2</label> <input type="range" value="0" id="input_2"> </div>
-<div> <label for="input_3">Input 3</label> <input type="range" value="0" id="input_3"> </div>
+<!--
+// default ranges are 0 to 100.
+// you can change them with max="11111",  min="1" and give a step with step="0.1"
+-->
+<div> <label for="input_1" class="itrs">Input 1</label> <input type="range" value="0" id="input_1"> </div>
+<div> <label for="input_2" class="itrs">Input 2</label> <input type="range" value="0" id="input_2"> </div>
+<!--
+data-sync-callback-function value is the target functions name to give sync value of input
+-->
+<div> <label for="input_3" class="itrs">Input 3</label> <input type="range" value="0" id="input_3" data-sync-callback-function="whatsTheValue"> </div>
 <hr>
 
 <h4>How to get current values of each input elements synchronously</h4>

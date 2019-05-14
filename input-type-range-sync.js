@@ -2,14 +2,15 @@
 window.addEventListener('load',function(){totalLoad();});
 
 function totalLoad(){
-    const controlsRange = document.querySelectorAll('input[type="range"]');
-// default ranges are 0 to 100.
-// you can change them with max="11111" min="1" and give a step with step="0.1"
+    // change .itrs class selector below with your own target input class
+    const controlsRange = document.querySelectorAll('input[type="range"], .itrs ');
+
     controlsRange.forEach(input => {
         input.addEventListener('mousedown',sync,true);
         input.addEventListener('click',detector,true);
         input.addEventListener('mouseup',unsync,true);
         input.setAttribute('data-current-value',0);
+
     });
 
     function sync(event){
@@ -23,6 +24,10 @@ function totalLoad(){
         let targetInput = event.target;
         console.log('sysnc done:'+ targetInput.value);
         targetInput.dataset.currentValue = targetInput.value;
+
+        if(targetInput.dataset.syncCallbackFunction){
+            window[targetInput.dataset.syncCallbackFunction](targetInput.value)
+        }
     }
 
 
@@ -34,7 +39,19 @@ function totalLoad(){
     }
 
 
+
 }
 
 
+
+
+
+
+//for example -sample function-- you should use your own functions
+function whatsTheValue(currentVal){
+    console.log(`
+        Callback called!
+        Current value is: ${currentVal}
+        `)
+}
 
