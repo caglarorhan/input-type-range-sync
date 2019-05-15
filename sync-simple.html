@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sync Simple</title>
+    <script src="input-type-range-sync.readable.js"></script>
+</head>
+<body>
+<h3>One way binding</h3>
+<h4>Range type input to Range type input</h4>
+Source: <input type="range" class="itrs" id="aUniqueID" value="0"  data-sync-to="targetElementUniqueId">
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+Target: <input type="range" id="targetElementUniqueId">
+<hr>
+<h3>Two way binding</h3>
+<h4>Range type input X Range type input</h4>
+Source: <input type="range" class="itrs" id="aUniqueID2" value="0"  data-sync-to="targetElementUniqueId2" data-two-way-bind="true">
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+Target: <input type="range" id="targetElementUniqueId2">
+<hr>
+<h3>One way binding</h3>
+<h4>Range type input to Text type input</h4>
+Source: <input type="range" class="itrs" id="aUniqueID3" value="0"  data-sync-to="targetElementUniqueId3" data-two-way-bind="true">
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+Target: <input type="text" id="targetElementUniqueId3">
+<hr>
+</body>
+</html>
