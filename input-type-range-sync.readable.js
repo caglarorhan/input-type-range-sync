@@ -3,13 +3,22 @@ window.addEventListener('load',function(){totalLoad();});
 
 function totalLoad(){
     // change .itrs class selector below with your own target input class
-    const controlsRange = document.querySelectorAll('input[type="range"], .itrs ');
+    const controlsRange = document.querySelectorAll('input[type="range"][class="itrs"]');
 
     controlsRange.forEach(input => {
         input.addEventListener('mousedown',sync,true);
         input.addEventListener('click',detector,true);
         input.addEventListener('mouseup',unsync,true);
         input.setAttribute('data-current-value',0);
+        //two way binding
+        if(input.dataset.twoWayBind){
+            let syncTarget = document.querySelector('#'+input.dataset.syncTo);
+            syncTarget.setAttribute('data-sync-to', input.id);
+            syncTarget.addEventListener('mousedown',sync,true);
+            syncTarget.addEventListener('click',detector,true);
+            syncTarget.addEventListener('mouseup',unsync,true);
+            syncTarget.setAttribute('data-current-value',0);
+        }
 
     });
 
@@ -21,22 +30,25 @@ function totalLoad(){
 
 
     function detector(event){
-        let targetTypes = ["input"]
+        let targetTagTypes = ["input"]
         let targetInput = event.target;
         //console.log('sysnc done:'+ targetInput.value);
         targetInput.dataset.currentValue = targetInput.value;
 
-        if(targetInput.dataset.syncTo){
-            
+            if(document.querySelector('#'+targetInput.dataset.syncTo)){ // this is a HTML element
+                let tag_name = document.querySelector('#'+targetInput.dataset.syncTo).tagName;
 
-            if(document.querySelector('#'+targetInput.dataset.syncTo)){
-
-                document.querySelector('#'+targetInput.dataset.syncTo).value = targetInput.value;
-            }else{
+                if(targetTagTypes.includes(tag_name)>-1){
+                    document.querySelector('#'+targetInput.dataset.syncTo).value = targetInput.value;
+                    console.log('target tagname olan bir item ve input')
+                }else{
+                    document.querySelector('#'+targetInput.dataset.syncTo).innerText = targetInput.value;
+                }
+            }else{ // this may be a function
                 window[targetInput.dataset.syncTo](targetInput.value);
             }
         }
-    }
+
 
 
     function unsync(event){
