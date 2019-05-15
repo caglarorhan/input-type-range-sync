@@ -25,9 +25,17 @@ function totalLoad(){
         console.log('sysnc done:'+ targetInput.value);
         targetInput.dataset.currentValue = targetInput.value;
 
-        if(targetInput.dataset.syncCallbackFunction){
-            window[targetInput.dataset.syncCallbackFunction](targetInput.value)
+        if(targetInput.dataset.syncTo){
+
+            if(document.querySelector('#'+targetInput.dataset.syncTo)){
+                document.querySelector('#'+targetInput.dataset.syncTo).value = targetInput.value;
+            }else{
+                window[targetInput.dataset.syncTo](targetInput.value);
+            }
         }
+
+
+
     }
 
 
@@ -46,10 +54,7 @@ function totalLoad(){
 
 //for example -sample function-- you should use your own functions
 function whatsTheValue(currentVal){
-    console.log(`
-        Callback called!
-        Current value is: ${currentVal}
-        `)
+    document.querySelector('#input_3_sync').value=currentVal
 }
 
 

@@ -11,11 +11,11 @@
 // you can change them with max="11111",  min="1" and give a step with step="0.1"
 -->
 <div> <label for="input_1" class="itrs">Input 1</label> <input type="range" value="0" id="input_1"> </div>
-<div> <label for="input_2" class="itrs">Input 2</label> <input type="range" value="0" id="input_2"> </div>
+<div> <label for="input_2" class="itrs">Input 2</label> <input type="range" value="0" id="input_2" data-sync-to="input_2_sync"> </div>
 <!--
 data-sync-callback-function value is the target functions name to give sync value of input
 -->
-<div> <label for="input_3" class="itrs">Input 3</label> <input type="range" value="0" id="input_3" data-sync-callback-function="whatsTheValue"> </div>
+<div> <label for="input_3" class="itrs">Input 3</label> <input type="range" value="0" id="input_3" data-sync-to="whatsTheValue"> </div>
 <hr>
 
 <h4>How to get current values of each input elements synchronously</h4>
@@ -23,10 +23,10 @@ data-sync-callback-function value is the target functions name to give sync valu
     document.querySelector('input_1').dataset.currentValue;
 </pre>
 <pre>
-    document.querySelector('input_2').dataset.currentValue;
+    document.querySelector('input_2').dataset.currentValue;<input type="text" id="input_2_sync">(sync directly from orijin)
 </pre>
 <pre>
-    document.querySelector('input_3').dataset.currentValue;
+    document.querySelector('input_3').dataset.currentValue;<input type="text" id="input_3_sync">(sync indirectly from optional external function)
 </pre>
 
 <script src="input-type-range-sync.readable.js"></script>
