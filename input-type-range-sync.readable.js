@@ -6,21 +6,24 @@ function totalLoad(){
     const controlsRange = document.querySelectorAll('input[type="range"][class="itrs"]');
 
     controlsRange.forEach(input => {
-        input.addEventListener('mousedown',sync,true);
-        input.addEventListener('click',detector,true);
-        input.addEventListener('mouseup',unsync,true);
-        input.setAttribute('data-current-value',0);
+        event_attacher(input);
         //two way binding
         if(input.dataset.twoWayBind){
             let syncTarget = document.querySelector('#'+input.dataset.syncTo);
             syncTarget.setAttribute('data-sync-to', input.id);
-            syncTarget.addEventListener('mousedown',sync,true);
-            syncTarget.addEventListener('click',detector,true);
-            syncTarget.addEventListener('mouseup',unsync,true);
-            syncTarget.setAttribute('data-current-value',0);
+            event_attacher(syncTarget);
+
         }
 
+
+
     });
+    function event_attacher(syncTarget){
+        syncTarget.addEventListener('mousedown',sync,true);
+        syncTarget.addEventListener('click',detector,true);
+        syncTarget.addEventListener('mouseup',unsync,true);
+        syncTarget.setAttribute('data-current-value',0);
+    }
 
     function sync(event){
         let targetInput = event.target;
@@ -40,7 +43,6 @@ function totalLoad(){
 
                 if(targetTagTypes.includes(tag_name)>-1){
                     document.querySelector('#'+targetInput.dataset.syncTo).value = targetInput.value;
-                    console.log('target tagname olan bir item ve input')
                 }else{
                     document.querySelector('#'+targetInput.dataset.syncTo).innerText = targetInput.value;
                 }
