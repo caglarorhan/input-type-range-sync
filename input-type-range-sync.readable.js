@@ -1,4 +1,4 @@
-
+// version 2019.2.1
 window.addEventListener('load',function(){totalLoad();});
 
 function totalLoad(){
@@ -15,33 +15,33 @@ function totalLoad(){
 
     function sync(event){
         let targetInput = event.target;
-        console.log(`Syncing... Last value is ${targetInput.value}`);
+        //console.log(`Syncing... Last value is ${targetInput.value}`);
         targetInput.addEventListener('mousemove',detector,true) ;
     }
 
 
     function detector(event){
+        let targetTypes = ["input"]
         let targetInput = event.target;
-        console.log('sysnc done:'+ targetInput.value);
+        //console.log('sysnc done:'+ targetInput.value);
         targetInput.dataset.currentValue = targetInput.value;
 
         if(targetInput.dataset.syncTo){
+            
 
             if(document.querySelector('#'+targetInput.dataset.syncTo)){
+
                 document.querySelector('#'+targetInput.dataset.syncTo).value = targetInput.value;
             }else{
                 window[targetInput.dataset.syncTo](targetInput.value);
             }
         }
-
-
-
     }
 
 
     function unsync(event){
         let targetInput = event.target;
-        console.log(`Unsyncing... Last value is ${targetInput.value}`);
+        //console.log(`Unsyncing... Last value is ${targetInput.value}`);
         targetInput.removeEventListener('mousemove',detector,true);
 
     }
