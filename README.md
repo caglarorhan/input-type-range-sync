@@ -5,6 +5,10 @@
  
 This is a small function which synchronize _**range type input elements**_ (**rtie**) with other items.
 
+** Examples Page **
+- https://caglarorhan.github.io/input-type-range-sync/example.html (one-way binding, two-way binding)
+- https://caglarorhan.github.io/input-type-range-sync/sync-simple.html (sync-simple)
+
 **Explanation of Main Function**
 
 First of all, ``window.load`` event listener activated. All initialization settled in main function named ``totalLoad``.
