@@ -1,13 +1,13 @@
 
 **Input-Type-Range-Sync**
 
-` version 2019.2.1`
+`version 2019.2.1`
  
 This is a small function which synchronize _**range type input elements**_ (**rtie**) with other items.
 
-** Examples Page **
-- https://caglarorhan.github.io/input-type-range-sync/example.html (one-way binding, two-way binding)
-- https://caglarorhan.github.io/input-type-range-sync/sync-simple.html (sync-simple)
+**Examples Pages**
+- [One-way binding, two-way binding](https://caglarorhan.github.io/input-type-range-sync/example.html)
+- [Sync-simple](https://caglarorhan.github.io/input-type-range-sync/sync-simple.html)
 
 **Explanation of Main Function**
 
